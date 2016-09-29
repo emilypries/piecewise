@@ -9,7 +9,7 @@
   copy: src=kansascity_example/extra_data.py dest=/opt/piecewise/
 - pip: name=ipaddress state=latest
 - name: Ingest census blocks to postgres
-  command: ogr2ogr -f PostgreSQL -t_srs EPSG:4326 -nln kansascity_blkgrps -nlt MultiPolygon -overwrite 'PG:user=postgres dbname=piecewise' /opt/piecewise_web/kansascity_blkgrps/cb_2015_29_bg_500k.shp
+  command: ogr2ogr -f PostgreSQL -t_srs EPSG:4326 -nln kansascity_blkgrps -nlt PROMOTE_TO_MULTI -overwrite 'PG:user=postgres dbname=piecewise' /opt/piecewise_web/kansascity_blkgrps/cb_2015_29_bg_500k.shp
 - name: Install seattle piecewise configuration
   copy: src=kansascity_example/piecewise_config.json dest=/etc/piecewise/config.json
 - name: Restart uwsgi so piecewise config is detected
